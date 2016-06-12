@@ -1,0 +1,98 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: http://mozilla.github.io/nunjucks/ -->
+<!-- jade: http://jade-lang.com/ -->
+<!-- haml: http://haml.info/tutorial.html -->
+<!-- hbs(handlebars): http://handlebarsjs.com/expressions.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to HyperDev!</title>
+    <meta name="description" content="A cool thing made with HyperDev">
+    <link id="favicon" rel="icon" href="https://hyperdev.com/favicon.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header>
+
+      <center>
+      <h1 id="name">
+        <script>
+        
+        var query = location.search.slice(1);
+        var partes = query.split('&');
+        var data = {};
+        var parte = partes[0];
+        var chaveValor = parte.split('=');
+        console.log(chaveValor);  
+        var nome = chaveValor[1];
+        console.log(nome);  
+        var preco = chaveValor[1];
+        //data[chave] = valor;
+        
+        document.getElementById('name').innerHTML = nome;
+        </script>
+      </h1>
+      </center>
+      
+    </header>
+    
+    <main>
+      <center>
+        <script type="text/javascript"
+          src="https://www.simplify.com/commerce/simplify.pay.js"></script>
+          <iframe id="form" name="my-hosted-form"
+          data-sc-key="sbpb_ZjMxZDRkNTgtYjBhYy00NGE4LWI1YWYtYWYxNzBkMzQ4M2Rm"
+          data-name=myParam.nome
+          data-description="Smooth tea with a rich jasmine bouquet"
+          data-reference="99999"
+          data-amount="3000"
+          data-color="#12B830"
+          height="700px"
+          width="500px"
+          data-masterpass="true"
+          data-redirect-url="http://paycheckin.habemus.website/obrigada.html">
+          </iframe>
+      </center>  
+      
+    </main>
+
+    <footer>
+      <a href="https://hyperdev.com">
+        Remix this in HyperDev
+      </a>
+    </footer>
+
+    <!-- Your web-app is https, so your scripts need to be too -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/client.js"></script>
+    
+    
+      <script>
+
+    function queryObj() {
+      var result = {}, keyValuePairs = location.search.slice(1).split("&");
+      keyValuePairs.forEach(function(keyValuePair) {
+          keyValuePair = keyValuePair.split('=');
+          result[decodeURIComponent(keyValuePair[0])] = decodeURIComponent(keyValuePair[1]) || '';
+      });
+      return result;
+    }
+    var myParam = queryObj();
+    var objeto = document.querySelector('#form');
+    objeto.setAttribute('data-name', myParam.nome);
+    objeto.setAttribute('data-amount', myParam.preco);
+    
+    var paramName = myParam.nome;
+    var paramPreco = myParam.preco;
+    </script>   
+  </body>
+</html>
